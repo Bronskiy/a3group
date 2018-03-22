@@ -20,6 +20,7 @@
 <th>URL</th>
 <th>Логотип</th>
 <th>Файл</th>
+<th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -35,6 +36,7 @@
 <td>{{ $row->recommendations_slug }}</td>
 <td>@if($row->recommendations_image != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->recommendations_image }}">@endif</td>
 <td>{{ $row->recommendations_file }}</td>
+<td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.recommendations.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

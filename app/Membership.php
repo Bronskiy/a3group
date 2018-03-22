@@ -20,12 +20,13 @@ class Membership extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'membership';
-    
+
     protected $fillable = [
           'membership_title',
-          'membership_description'
+          'membership_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,13 @@ class Membership extends Model {
 
         Membership::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

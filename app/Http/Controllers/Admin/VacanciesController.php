@@ -9,6 +9,7 @@ use App\Vacancies;
 use App\Http\Requests\CreateVacanciesRequest;
 use App\Http\Requests\UpdateVacanciesRequest;
 use Illuminate\Http\Request;
+use App\Language;
 
 
 
@@ -23,7 +24,7 @@ class VacanciesController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $vacancies = Vacancies::all();
+        $vacancies = Vacancies::with("language")->get();
 
 		return view('admin.vacancies.index', compact('vacancies'));
 	}
@@ -35,9 +36,10 @@ class VacanciesController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.vacancies.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+	    return view('admin.vacancies.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class VacanciesController extends Controller {
 	 */
 	public function store(CreateVacanciesRequest $request)
 	{
-	    
+
 		Vacancies::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.vacancies.index');
@@ -62,9 +64,10 @@ class VacanciesController extends Controller {
 	public function edit($id)
 	{
 		$vacancies = Vacancies::find($id);
-	    
-	    
-		return view('admin.vacancies.edit', compact('vacancies'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.vacancies.edit', compact('vacancies', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class VacanciesController extends Controller {
 	{
 		$vacancies = Vacancies::findOrFail($id);
 
-        
+
 
 		$vacancies->update($request->all());
 

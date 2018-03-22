@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
-use Carbon\Carbon; 
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,15 +21,16 @@ class Articles extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'articles';
-    
+
     protected $fillable = [
           'news_title',
           'news_slug',
           'news_body',
           'newscategories_id',
-          'cat_date'
+          'cat_date',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -37,14 +38,18 @@ class Articles extends Model {
 
         Articles::observe(new UserActionsObserver);
     }
-    
+
     public function newscategories()
     {
         return $this->hasOne('App\NewsCategories', 'id', 'newscategories_id');
     }
 
 
-    
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
     /**
      * Set attribute to date format
      * @param $input
@@ -74,5 +79,5 @@ class Articles extends Model {
     }
 
 
-    
+
 }

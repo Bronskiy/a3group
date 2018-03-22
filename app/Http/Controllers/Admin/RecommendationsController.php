@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateRecommendationsRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\FileUploadTrait;
 
+use App\Language;
 
 class RecommendationsController extends Controller {
 
@@ -23,7 +24,7 @@ class RecommendationsController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $recommendations = Recommendations::all();
+        $recommendations = Recommendations::with("language")->get();
 
 		return view('admin.recommendations.index', compact('recommendations'));
 	}
@@ -35,9 +36,10 @@ class RecommendationsController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.recommendations.create');
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.recommendations.create', compact("language"));
 	}
 
 	/**
@@ -62,9 +64,10 @@ class RecommendationsController extends Controller {
 	public function edit($id)
 	{
 		$recommendations = Recommendations::find($id);
-	    
-	    
-		return view('admin.recommendations.edit', compact('recommendations'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.recommendations.edit', compact('recommendations', 'language'));
 	}
 
 	/**

@@ -9,7 +9,7 @@ use App\CommonArticles;
 use App\Http\Requests\CreateCommonArticlesRequest;
 use App\Http\Requests\UpdateCommonArticlesRequest;
 use Illuminate\Http\Request;
-
+use App\Language;
 
 
 class CommonArticlesController extends Controller {
@@ -23,7 +23,7 @@ class CommonArticlesController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $commonarticles = CommonArticles::all();
+        $commonarticles = CommonArticles::with("language")->get();
 
 		return view('admin.commonarticles.index', compact('commonarticles'));
 	}
@@ -35,9 +35,10 @@ class CommonArticlesController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.commonarticles.create');
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.commonarticles.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +48,7 @@ class CommonArticlesController extends Controller {
 	 */
 	public function store(CreateCommonArticlesRequest $request)
 	{
-	    
+
 		CommonArticles::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.commonarticles.index');
@@ -62,9 +63,10 @@ class CommonArticlesController extends Controller {
 	public function edit($id)
 	{
 		$commonarticles = CommonArticles::find($id);
-	    
-	    
-		return view('admin.commonarticles.edit', compact('commonarticles'));
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+		return view('admin.commonarticles.edit', compact('commonarticles', 'language'));
 	}
 
 	/**
@@ -77,7 +79,7 @@ class CommonArticlesController extends Controller {
 	{
 		$commonarticles = CommonArticles::findOrFail($id);
 
-        
+
 
 		$commonarticles->update($request->all());
 

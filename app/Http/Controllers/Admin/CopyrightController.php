@@ -9,6 +9,7 @@ use App\Copyright;
 use App\Http\Requests\CreateCopyrightRequest;
 use App\Http\Requests\UpdateCopyrightRequest;
 use Illuminate\Http\Request;
+use App\Language;
 
 
 
@@ -23,7 +24,7 @@ class CopyrightController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $copyright = Copyright::all();
+        $copyright = Copyright::with("language")->get();
 
 		return view('admin.copyright.index', compact('copyright'));
 	}
@@ -35,9 +36,9 @@ class CopyrightController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.copyright.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.copyright.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +48,7 @@ class CopyrightController extends Controller {
 	 */
 	public function store(CreateCopyrightRequest $request)
 	{
-	    
+
 		Copyright::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.copyright.index');
@@ -62,9 +63,10 @@ class CopyrightController extends Controller {
 	public function edit($id)
 	{
 		$copyright = Copyright::find($id);
-	    
-	    
-		return view('admin.copyright.edit', compact('copyright'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.copyright.edit', compact('copyright', 'language'));
 	}
 
 	/**
@@ -77,7 +79,7 @@ class CopyrightController extends Controller {
 	{
 		$copyright = Copyright::findOrFail($id);
 
-        
+
 
 		$copyright->update($request->all());
 

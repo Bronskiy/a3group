@@ -20,7 +20,7 @@ class TeamMembers extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'teammembers';
-    
+
     protected $fillable = [
           'member_name',
           'member_slug',
@@ -28,9 +28,10 @@ class TeamMembers extends Model {
           'teamcategories_id',
           'member_about',
           'member_email',
-          'member_position'
+          'member_position',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -38,14 +39,17 @@ class TeamMembers extends Model {
 
         TeamMembers::observe(new UserActionsObserver);
     }
-    
+
     public function teamcategories()
     {
         return $this->hasOne('App\TeamCategories', 'id', 'teamcategories_id');
     }
 
+    public function language()
+    {
+        return $this->hasOne('App\Language', 'id', 'language_id');
+    }
 
-    
-    
-    
+
+
 }

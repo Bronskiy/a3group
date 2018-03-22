@@ -20,12 +20,13 @@ class Copyright extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'copyright';
-    
+
     protected $fillable = [
           'copyright_title',
-          'copyright_description'
+          'copyright_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,12 @@ class Copyright extends Model {
 
         Copyright::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

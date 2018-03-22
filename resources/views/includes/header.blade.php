@@ -8,35 +8,38 @@
   <!-- Navigation-->
   <div class="inner-navigation collapse">
     <div class="inner-navigation-inline ml-3">
-      <div class="inner-nav onepage-nav">
+      <div class="inner-nav">
         <ul>
-          <li><a href="#">Компания</a></li>
-          <li><a href="#">Практика</a></li>
-          <li><a href="#">Команда</a></li>
-          <li><a href="#">Новости</a></li>
-          <li class="menu-item-has-children">
-            <a href="#">Контакты <i class="fa fa-angle-down"></i></a>
+          @if ( ! $menuData->isEmpty() )
+          @foreach ($menuData->where('mainmenu_id',0)->sortBy('menu_order') as $value)
+          @if ($menuData->where('mainmenu_id', $value->id )->isEmpty())
+          <li class=" {{{ (Request::is(preg_replace('|/|','',$value->menu_link)) ? 'active' : '') }}}"><a href="{{ $value->menu_link }}">{{ $value->menu_title }}</a></li>
+          @else
+          <li class="menu-item-has-children {{{ (Request::is(preg_replace('|/|','',$value->menu_link)) ? 'active' : '') }}}">
+            <a href="{{ $value->menu_link }}">{{ $value->menu_title }} <i class="fa fa-angle-down"></i></a>
             <ul class="sub-menu" style="margin-left: 0px;">
-              <li><a href="#">Item</a></li>
-              <li><a href="#">Item</a></li>
-              <li><a href="#">Item</a></li>
-              <li><a href="#">Item</a></li>
-              <li><a href="#">Item</a></li>
-              <li><a href="#">Item</a></li>
+              @foreach ($menuData->where('mainmenu_id',$value->id)->sortBy('menu_order') as $subvalue)
+              <li><a href="{{ $subvalue->menu_link }}">{{ $subvalue->menu_title }}</a></li>
+              @endforeach
             </ul>
           </li>
-
+          @endif
+          @endforeach
 
           <li class="menu-item-has-children menu-language">
-            <a href="#"><span class="flag-icon flag-icon-ru flag-icon-squared"></span> Русский <i class="fa fa-angle-down"></i></a>
+            <a href="#"><span class="flag-icon flag-icon-ru flag-icon-squared"></span> {{ LaravelLocalization::getCurrentLocale() }} <i class="fa fa-angle-down"></i></a>
             <ul class="sub-menu" style="margin-left: 0px;">
-              <li><a href="#"><span class="flag-icon flag-icon-cn flag-icon-squared"></span> 简体中文</a></li>
-              <li><a href="#"><span class="flag-icon flag-icon-gb flag-icon-squared"></span> English</a></li>
-              <li><a href="#"><span class="flag-icon flag-icon-de flag-icon-squared"></span> Deutsch</a></li>
-              <li><a href="#"><span class="flag-icon flag-icon-jp flag-icon-squared"></span> 日本語</a></li>
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+              <li>
+                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                  {{ $properties['native'] }}
+                </a>
+              </li>
+              @endforeach
             </ul>
           </li>
         </ul>
+        @endif
       </div>
     </div>
   </div>

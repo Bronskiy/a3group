@@ -22,34 +22,40 @@
     {!! Form::label('news_title', 'Название*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('news_title', old('news_title',$articles->news_title), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('news_slug', 'URL*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('news_slug', old('news_slug',$articles->news_slug), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('news_body', 'Текст', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::textarea('news_body', old('news_body',$articles->news_body), array('class'=>'form-control ckeditor')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('newscategories_id', 'Категория', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::select('newscategories_id', $newscategories, old('newscategories_id',$articles->newscategories_id), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('cat_date', 'Дата', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('cat_date', old('cat_date',$articles->cat_date), array('class'=>'form-control datepicker')) !!}
-        
+
     </div>
 </div>
+<div class="form-group">
+    {!! Form::label('language_id', 'Язык*', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::select('language_id', $language, old('language_id',$articles->language_id), array('class'=>'form-control')) !!}
 
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}

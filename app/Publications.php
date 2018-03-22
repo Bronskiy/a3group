@@ -20,13 +20,14 @@ class Publications extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'publications';
-    
+
     protected $fillable = [
           'publications_title',
           'publications_file',
-          'publications_link'
+          'publications_link',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -34,8 +35,12 @@ class Publications extends Model {
 
         Publications::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
+
 }

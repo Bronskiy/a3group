@@ -10,6 +10,7 @@ use App\Http\Requests\CreateFooterMenuRequest;
 use App\Http\Requests\UpdateFooterMenuRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class FooterMenuController extends Controller {
@@ -23,7 +24,7 @@ class FooterMenuController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $footermenu = FooterMenu::all();
+        $footermenu = FooterMenu::with("language")->get();
 
 		return view('admin.footermenu.index', compact('footermenu'));
 	}
@@ -35,9 +36,10 @@ class FooterMenuController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.footermenu.create');
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.footermenu.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class FooterMenuController extends Controller {
 	 */
 	public function store(CreateFooterMenuRequest $request)
 	{
-	    
+
 		FooterMenu::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.footermenu.index');
@@ -62,9 +64,10 @@ class FooterMenuController extends Controller {
 	public function edit($id)
 	{
 		$footermenu = FooterMenu::find($id);
-	    
-	    
-		return view('admin.footermenu.edit', compact('footermenu'));
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+		return view('admin.footermenu.edit', compact('footermenu', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class FooterMenuController extends Controller {
 	{
 		$footermenu = FooterMenu::findOrFail($id);
 
-        
+
 
 		$footermenu->update($request->all());
 

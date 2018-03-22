@@ -24,7 +24,8 @@ class Practice extends Model {
       'practice_title',
       'practice_slug',
           'description',
-          'projects_id'
+          'projects_id',
+          'language_id'
     ];
 
 
@@ -40,4 +41,9 @@ class Practice extends Model {
     {
         return $this->hasOne('App\Projects', 'id', 'projects_id');
     }
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
 }

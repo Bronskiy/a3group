@@ -10,6 +10,7 @@ use App\Http\Requests\CreatePracticeRequest;
 use App\Http\Requests\UpdatePracticeRequest;
 use Illuminate\Http\Request;
 use App\Projects;
+use App\Language;
 
 
 class PracticeController extends Controller {
@@ -23,7 +24,7 @@ class PracticeController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $practice = Practice::with("projects")->get();
+        $practice = Practice::with("projects")->with("language")->get();
 
 		return view('admin.practice.index', compact('practice'));
 	}
@@ -37,8 +38,9 @@ class PracticeController extends Controller {
 	{
 
 		$projects = Projects::pluck("project_title", "id")->prepend('Выберите проекты', 0);
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
-	    return view('admin.practice.create', compact("projects"));
+	    return view('admin.practice.create', compact("projects", "language"));
 	}
 
 	/**
@@ -65,8 +67,9 @@ class PracticeController extends Controller {
 		$practice = Practice::find($id);
 
 		$projects = Projects::pluck("project_title", "id")->prepend('Выберите проекты', 0);
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
-		return view('admin.practice.edit', compact('practice', "projects"));
+		return view('admin.practice.edit', compact('practice', "projects", "language"));
 	}
 
 	/**

@@ -20,12 +20,13 @@ class About extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'about';
-    
+
     protected $fillable = [
           'about_title',
-          'about_description'
+          'about_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,11 @@ class About extends Model {
 
         About::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+    public function language()
+    {
+        return $this->hasOne('App\Language', 'id', 'language_id');
+    }
+
 }

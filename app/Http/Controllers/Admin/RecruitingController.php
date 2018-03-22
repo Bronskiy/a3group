@@ -10,6 +10,7 @@ use App\Http\Requests\CreateRecruitingRequest;
 use App\Http\Requests\UpdateRecruitingRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class RecruitingController extends Controller {
@@ -23,7 +24,7 @@ class RecruitingController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $recruiting = Recruiting::all();
+        $recruiting = Recruiting::with("language")->get();
 
 		return view('admin.recruiting.index', compact('recruiting'));
 	}
@@ -35,9 +36,10 @@ class RecruitingController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.recruiting.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+	    return view('admin.recruiting.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class RecruitingController extends Controller {
 	 */
 	public function store(CreateRecruitingRequest $request)
 	{
-	    
+
 		Recruiting::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.recruiting.index');
@@ -62,9 +64,10 @@ class RecruitingController extends Controller {
 	public function edit($id)
 	{
 		$recruiting = Recruiting::find($id);
-	    
-	    
-		return view('admin.recruiting.edit', compact('recruiting'));
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+		return view('admin.recruiting.edit', compact('recruiting', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class RecruitingController extends Controller {
 	{
 		$recruiting = Recruiting::findOrFail($id);
 
-        
+
 
 		$recruiting->update($request->all());
 

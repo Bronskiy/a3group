@@ -20,12 +20,13 @@ class TeamCategories extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'teamcategories';
-    
+
     protected $fillable = [
           'team_cat',
-          'team_slug'
+          'team_slug',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,12 @@ class TeamCategories extends Model {
 
         TeamCategories::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
+
 }

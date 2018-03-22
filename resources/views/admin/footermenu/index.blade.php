@@ -19,6 +19,7 @@
                         <th>Название</th>
 <th>Ссылка</th>
 <th>Порядок</th>
+<th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -33,6 +34,7 @@
                             <td>{{ $row->footer_menu_title }}</td>
 <td>{{ $row->footer_menu_link }}</td>
 <td>{{ $row->footer_menu_order }}</td>
+<td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.footermenu.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

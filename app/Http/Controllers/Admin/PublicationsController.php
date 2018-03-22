@@ -11,6 +11,7 @@ use App\Http\Requests\UpdatePublicationsRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\FileUploadTrait;
 
+use App\Language;
 
 class PublicationsController extends Controller {
 
@@ -23,7 +24,7 @@ class PublicationsController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $publications = Publications::all();
+        $publications = Publications::with("language")->get();
 
 		return view('admin.publications.index', compact('publications'));
 	}
@@ -35,9 +36,10 @@ class PublicationsController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.publications.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+	    return view('admin.publications.create', compact("language"));
 	}
 
 	/**
@@ -62,9 +64,10 @@ class PublicationsController extends Controller {
 	public function edit($id)
 	{
 		$publications = Publications::find($id);
-	    
-	    
-		return view('admin.publications.edit', compact('publications'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.publications.edit', compact('publications', 'language'));
 	}
 
 	/**

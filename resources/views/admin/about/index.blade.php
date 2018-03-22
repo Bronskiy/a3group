@@ -14,6 +14,7 @@
                     <tr>
 
                         <th>Заголовок</th>
+                        <th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -24,6 +25,7 @@
                         <tr>
 
                             <td>{{ $row->about_title }}</td>
+                            <td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.about.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
@@ -33,7 +35,7 @@
                     @endforeach
                 </tbody>
             </table>
-  
+
         </div>
 	</div>
 @else

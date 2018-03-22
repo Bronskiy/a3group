@@ -11,7 +11,7 @@ use App\Http\Requests\UpdateArticlesRequest;
 use Illuminate\Http\Request;
 
 use App\NewsCategories;
-
+use App\Language;
 
 class ArticlesController extends Controller {
 
@@ -24,7 +24,7 @@ class ArticlesController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $articles = Articles::with("newscategories")->get();
+        $articles = Articles::with("newscategories")->with("language")->get();
 
 		return view('admin.articles.index', compact('articles'));
 	}
@@ -37,9 +37,10 @@ class ArticlesController extends Controller {
 	public function create()
 	{
 	    $newscategories = NewsCategories::pluck("cat_title", "id")->prepend('Выберите категорию', 0);
+			$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
 
-	    return view('admin.articles.create', compact("newscategories"));
+	    return view('admin.articles.create', compact("newscategories", "language"));
 	}
 
 	/**
@@ -65,9 +66,10 @@ class ArticlesController extends Controller {
 	{
 		$articles = Articles::find($id);
 	    $newscategories = NewsCategories::pluck("cat_title", "id")->prepend('Выберите категорию', 0);
+			$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
 
-		return view('admin.articles.edit', compact('articles', "newscategories"));
+		return view('admin.articles.edit', compact('articles', "newscategories", "language"));
 	}
 
 	/**

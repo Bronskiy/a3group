@@ -19,6 +19,7 @@
                         <th>Название</th>
                         <th>Файл</th>
                         <th>Внешняя ссылка</th>
+                        <th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -34,6 +35,7 @@
 
                             <td>{{ $row->publications_file }}</td>
 <td>{{ $row->publications_link }}</td>
+<td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.publications.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

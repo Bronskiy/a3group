@@ -383,7 +383,7 @@ h4,
 h5,
 .h5 {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0 0 10px;
 }
 
@@ -739,7 +739,7 @@ pre {
 /*About bg*/
 #about-bg {
     position: relative;
-    background-image: url(../images/about/about2.jpg);
+    background-image: url(../img/about/about2.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -988,7 +988,7 @@ pre {
 }
 
 .creative-bg-service {
-    background-image:url(../images/work-6.jpg);
+    background-image:url(../img/work-6.jpg);
 }
 
 .tab-numbers-service {
@@ -5277,7 +5277,7 @@ body:after {
     -webkit-transition: opacity .2s cubic-bezier(.785, .135, .15, .86);
             transition: opacity .2s cubic-bezier(.785, .135, .15, .86);
     cursor: pointer;
-    cursor: url("../images/close.png"), pointer;
+    cursor: url("../img/close.png"), pointer;
 }
 
 body.off-canvas-sidebar-open:after {
@@ -7186,7 +7186,7 @@ a:hover {
     padding: 100px 0;
     position: relative;
     text-align: center;
-    background: url(../images/parralax.jpg) 50% 0 repeat fixed;
+    background: url(../img/parralax.jpg) 50% 0 repeat fixed;
 }
 .color-blue {
     color: #4a90e2;
@@ -8789,11 +8789,11 @@ a[rel~="gallery"]:hover {
     border: 2px solid #f7f7f7;
  }
  .hotel-offer-bg {
-    background-image: url("../images/hotel/1.jpeg");
+    background-image: url("../img/hotel/1.jpeg");
     background-size: cover;
  }
  .hotel-offer-bg-2 {
-    background-image: url("../images/hotel/2.jpeg");
+    background-image: url("../img/hotel/2.jpeg");
     background-size: cover;
 
  }
@@ -8807,17 +8807,17 @@ a[rel~="gallery"]:hover {
 
 /* Business - Vimeo Dark Header */
 .background-business-vimeo-services {
-    background-image: url(../images/header-img.jpg);
+    background-image: url(../img/header-img.jpg);
 }
 .img-bg-service-area {
-    background-image: url(../images/spec-16.jpg);
+    background-image: url(../img/spec-16.jpg);
 }
 
 /* Agency - Vimeo Light Header */
 
 /* Testimonials */
 .background-testimonials-agency {
-    background-image: url("../images/spec2.jpg");
+    background-image: url("../img/spec2.jpg");
 }
 .icon-agency-vimeo-light {
     color: #4a90e2;
@@ -8871,13 +8871,13 @@ a[rel~="gallery"]:hover {
      background:#cc545b;
 }
 .service-bg-image-video:hover {
-     background-image: linear-gradient(0deg,rgba(155,107,204,0.8),#d9534f),url(../images/spec.jpg);
+     background-image: linear-gradient(0deg,rgba(155,107,204,0.8),#d9534f),url(../img/spec.jpg);
 }
 .service-bg-image-video-2:hover {
-    background-image: linear-gradient(0deg,rgba(155,107,204,0.8),#4a90e2),url(../images/spec-7.jpg);
+    background-image: linear-gradient(0deg,rgba(155,107,204,0.8),#4a90e2),url(../img/spec-7.jpg);
 }
 .service-bg-image-video-3:hover {
-    background-image: linear-gradient(0deg,rgba(155,107,204,0.8),#c802d8),url(../images/spec-9.jpg);
+    background-image: linear-gradient(0deg,rgba(155,107,204,0.8),#c802d8),url(../img/spec-9.jpg);
 
 }
 
@@ -9346,7 +9346,7 @@ PRICING STYLES
     background-color: #fff;
 }
 .spec-image-dark {
-    background-image:url(../images/spec-10.jpg);
+    background-image:url(../img/spec-10.jpg);
 }
 .call-to-action {
     background-color: #fff;
@@ -9477,7 +9477,7 @@ PRICING STYLES
 .widget .widget-title h5 {
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 12px;
+    font-size: 16px;
     margin: 0;
 }
 
@@ -9572,7 +9572,7 @@ PRICING STYLES
 }
 
 .post-date {
-    font-size: 12px;
+    font-size: 14px;
     display: block;
     opacity: .7;
 }
@@ -10399,7 +10399,7 @@ PRICING STYLES
 }
 
 #about .about-container {
-  background: url(../images/parralax.jpg) left top no-repeat;
+  background: url(../img/parralax.jpg) left top no-repeat;
 }
 
 #about .about-content {
@@ -10472,7 +10472,7 @@ PRICING STYLES
 /* Subscribe Section
 --------------------------------*/
 #subscribe {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/parralax.jpg) fixed center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/parralax.jpg) fixed center center;
   background-size: cover;
   padding: 80px 0;
 }

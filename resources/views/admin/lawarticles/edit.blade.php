@@ -22,22 +22,28 @@
     {!! Form::label('law_articles_title', 'Название*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('law_articles_title', old('law_articles_title',$lawarticles->law_articles_title), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('law_articles_slug', 'URL*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('law_articles_slug', old('law_articles_slug',$lawarticles->law_articles_slug), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('law_articles_description', 'Текст', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::textarea('law_articles_description', old('law_articles_description',$lawarticles->law_articles_description), array('class'=>'form-control ckeditor')) !!}
-        
+
     </div>
 </div>
+<div class="form-group">
+    {!! Form::label('language_id', 'Язык*', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::select('language_id', $language, old('language_id',$lawarticles->language_id), array('class'=>'form-control')) !!}
 
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}

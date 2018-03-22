@@ -9,7 +9,7 @@ use App\NewsCategories;
 use App\Http\Requests\CreateNewsCategoriesRequest;
 use App\Http\Requests\UpdateNewsCategoriesRequest;
 use Illuminate\Http\Request;
-
+use App\Language;
 
 
 class NewsCategoriesController extends Controller {
@@ -23,7 +23,7 @@ class NewsCategoriesController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $newscategories = NewsCategories::all();
+        $newscategories = NewsCategories::with("language")->get();
 
 		return view('admin.newscategories.index', compact('newscategories'));
 	}
@@ -35,9 +35,9 @@ class NewsCategoriesController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.newscategories.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.newscategories.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +47,7 @@ class NewsCategoriesController extends Controller {
 	 */
 	public function store(CreateNewsCategoriesRequest $request)
 	{
-	    
+
 		NewsCategories::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.newscategories.index');
@@ -62,9 +62,9 @@ class NewsCategoriesController extends Controller {
 	public function edit($id)
 	{
 		$newscategories = NewsCategories::find($id);
-	    
-	    
-		return view('admin.newscategories.edit', compact('newscategories'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+		return view('admin.newscategories.edit', compact('newscategories', 'language'));
 	}
 
 	/**
@@ -77,7 +77,7 @@ class NewsCategoriesController extends Controller {
 	{
 		$newscategories = NewsCategories::findOrFail($id);
 
-        
+
 
 		$newscategories->update($request->all());
 

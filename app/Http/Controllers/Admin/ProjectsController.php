@@ -10,6 +10,7 @@ use App\Http\Requests\CreateProjectsRequest;
 use App\Http\Requests\UpdateProjectsRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class ProjectsController extends Controller {
@@ -23,7 +24,7 @@ class ProjectsController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $projects = Projects::all();
+        $projects = Projects::with("language")->get();
 
 		return view('admin.projects.index', compact('projects'));
 	}
@@ -35,9 +36,10 @@ class ProjectsController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.projects.create');
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.projects.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class ProjectsController extends Controller {
 	 */
 	public function store(CreateProjectsRequest $request)
 	{
-	    
+
 		Projects::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.projects.index');
@@ -62,9 +64,10 @@ class ProjectsController extends Controller {
 	public function edit($id)
 	{
 		$projects = Projects::find($id);
-	    
-	    
-		return view('admin.projects.edit', compact('projects'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.projects.edit', compact('projects', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class ProjectsController extends Controller {
 	{
 		$projects = Projects::findOrFail($id);
 
-        
+
 
 		$projects->update($request->all());
 

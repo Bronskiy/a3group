@@ -43,7 +43,13 @@
 
     </div>
 </div>
+<div class="form-group">
+    {!! Form::label('menulang_id', 'Язык*', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::select('menulang_id', $language, old('menulang_id',$mainmenu->menulang_id), array('class'=>'form-control')) !!}
 
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}

@@ -22,16 +22,22 @@
     {!! Form::label('cat_title', 'Название', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('cat_title', old('cat_title'), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('cat_slug', 'URL', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('cat_slug', old('cat_slug'), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div>
+<div class="form-group">
+    {!! Form::label('language_id', 'Язык*', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::select('language_id', $language, old('language_id'), array('class'=>'form-control')) !!}
 
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}

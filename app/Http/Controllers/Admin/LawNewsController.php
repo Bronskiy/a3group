@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateLawNewsRequest;
 use Illuminate\Http\Request;
 
 use App\LawNewsCategories;
+use App\Language;
 
 
 class LawNewsController extends Controller {
@@ -24,7 +25,7 @@ class LawNewsController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $lawnews = LawNews::with("lawnewscategories")->get();
+        $lawnews = LawNews::with("lawnewscategories")->with("language")->get();
 
 		return view('admin.lawnews.index', compact('lawnews'));
 	}
@@ -37,9 +38,10 @@ class LawNewsController extends Controller {
 	public function create()
 	{
 	    $lawnewscategories = LawNewsCategories::pluck("lawnews_cat_title", "id")->prepend('Please select', 0);
+			$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
-	    
-	    return view('admin.lawnews.create', compact("lawnewscategories"));
+
+	    return view('admin.lawnews.create', compact("lawnewscategories", "language"));
 	}
 
 	/**
@@ -49,7 +51,7 @@ class LawNewsController extends Controller {
 	 */
 	public function store(CreateLawNewsRequest $request)
 	{
-	    
+
 		LawNews::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.lawnews.index');
@@ -65,9 +67,10 @@ class LawNewsController extends Controller {
 	{
 		$lawnews = LawNews::find($id);
 	    $lawnewscategories = LawNewsCategories::pluck("lawnews_cat_title", "id")->prepend('Please select', 0);
+			$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
-	    
-		return view('admin.lawnews.edit', compact('lawnews', "lawnewscategories"));
+
+		return view('admin.lawnews.edit', compact('lawnews', "lawnewscategories", "language"));
 	}
 
 	/**
@@ -80,7 +83,7 @@ class LawNewsController extends Controller {
 	{
 		$lawnews = LawNews::findOrFail($id);
 
-        
+
 
 		$lawnews->update($request->all());
 

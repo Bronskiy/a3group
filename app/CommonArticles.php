@@ -20,13 +20,14 @@ class CommonArticles extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'commonarticles';
-    
+
     protected $fillable = [
           'common_title',
           'common_slug',
-          'common_description'
+          'common_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -34,8 +35,12 @@ class CommonArticles extends Model {
 
         CommonArticles::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
 }

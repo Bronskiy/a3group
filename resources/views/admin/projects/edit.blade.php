@@ -22,22 +22,28 @@
     {!! Form::label('project_title', 'Название*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('project_title', old('project_title',$projects->project_title), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('project_slug', 'URL*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('project_slug', old('project_slug',$projects->project_slug), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('project_description', 'Текст', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::textarea('project_description', old('project_description',$projects->project_description), array('class'=>'form-control ckeditor')) !!}
-        
+
     </div>
 </div>
+<div class="form-group">
+    {!! Form::label('language_id', 'Язык*', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::select('language_id', $language, old('language_id',$projects->language_id), array('class'=>'form-control')) !!}
 
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}

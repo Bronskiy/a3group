@@ -20,12 +20,13 @@ class LawNewsCategories extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'lawnewscategories';
-    
+
     protected $fillable = [
           'lawnews_cat_title',
-          'lawnews_cat_slug'
+          'lawnews_cat_slug',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,13 @@ class LawNewsCategories extends Model {
 
         LawNewsCategories::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

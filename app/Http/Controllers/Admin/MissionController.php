@@ -10,6 +10,7 @@ use App\Http\Requests\CreateMissionRequest;
 use App\Http\Requests\UpdateMissionRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class MissionController extends Controller {
@@ -23,7 +24,7 @@ class MissionController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $mission = Mission::all();
+        $mission = Mission::with("language")->get();
 
 		return view('admin.mission.index', compact('mission'));
 	}
@@ -35,9 +36,10 @@ class MissionController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.mission.create');
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.mission.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class MissionController extends Controller {
 	 */
 	public function store(CreateMissionRequest $request)
 	{
-	    
+
 		Mission::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.mission.index');
@@ -62,9 +64,10 @@ class MissionController extends Controller {
 	public function edit($id)
 	{
 		$mission = Mission::find($id);
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 	    
-	    
-		return view('admin.mission.edit', compact('mission'));
+
+		return view('admin.mission.edit', compact('mission', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class MissionController extends Controller {
 	{
 		$mission = Mission::findOrFail($id);
 
-        
+
 
 		$mission->update($request->all());
 

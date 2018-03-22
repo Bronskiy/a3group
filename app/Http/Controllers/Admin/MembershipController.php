@@ -9,6 +9,7 @@ use App\Membership;
 use App\Http\Requests\CreateMembershipRequest;
 use App\Http\Requests\UpdateMembershipRequest;
 use Illuminate\Http\Request;
+use App\Language;
 
 
 
@@ -23,7 +24,7 @@ class MembershipController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $membership = Membership::all();
+        $membership = Membership::with("language")->get();
 
 		return view('admin.membership.index', compact('membership'));
 	}
@@ -35,9 +36,10 @@ class MembershipController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.membership.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+	    return view('admin.membership.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class MembershipController extends Controller {
 	 */
 	public function store(CreateMembershipRequest $request)
 	{
-	    
+
 		Membership::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.membership.index');
@@ -62,9 +64,10 @@ class MembershipController extends Controller {
 	public function edit($id)
 	{
 		$membership = Membership::find($id);
-	    
-	    
-		return view('admin.membership.edit', compact('membership'));
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+		return view('admin.membership.edit', compact('membership', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class MembershipController extends Controller {
 	{
 		$membership = Membership::findOrFail($id);
 
-        
+
 
 		$membership->update($request->all());
 

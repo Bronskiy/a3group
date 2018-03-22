@@ -20,12 +20,13 @@ class Mission extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'mission';
-    
+
     protected $fillable = [
           'mission_title',
-          'mission_description'
+          'mission_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,12 @@ class Mission extends Model {
 
         Mission::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+    public function language()
+    {
+        return $this->hasOne('App\Language', 'id', 'language_id');
+    }
+
+
+
 }

@@ -10,6 +10,7 @@ use App\Http\Requests\CreateLawArticlesRequest;
 use App\Http\Requests\UpdateLawArticlesRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class LawArticlesController extends Controller {
@@ -23,7 +24,7 @@ class LawArticlesController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $lawarticles = LawArticles::all();
+        $lawarticles = LawArticles::with("language")->get();
 
 		return view('admin.lawarticles.index', compact('lawarticles'));
 	}
@@ -35,9 +36,9 @@ class LawArticlesController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.lawarticles.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.lawarticles.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +48,7 @@ class LawArticlesController extends Controller {
 	 */
 	public function store(CreateLawArticlesRequest $request)
 	{
-	    
+
 		LawArticles::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.lawarticles.index');
@@ -62,9 +63,9 @@ class LawArticlesController extends Controller {
 	public function edit($id)
 	{
 		$lawarticles = LawArticles::find($id);
-	    
-	    
-		return view('admin.lawarticles.edit', compact('lawarticles'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+		return view('admin.lawarticles.edit', compact('lawarticles', 'language'));
 	}
 
 	/**
@@ -77,7 +78,7 @@ class LawArticlesController extends Controller {
 	{
 		$lawarticles = LawArticles::findOrFail($id);
 
-        
+
 
 		$lawarticles->update($request->all());
 

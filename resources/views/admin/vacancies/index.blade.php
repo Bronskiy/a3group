@@ -19,6 +19,7 @@
                         <th>Название</th>
 <th>URL</th>
 <th>Компания</th>
+<th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -33,6 +34,7 @@
                             <td>{{ $row->vacancy_title }}</td>
 <td>{{ $row->vacancy_slug }}</td>
 <td>{{ $row->vacancy_company }}</td>
+<td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.vacancies.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

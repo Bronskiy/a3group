@@ -20,15 +20,16 @@ class Recruiting extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'recruiting';
-    
+
     protected $fillable = [
           'recruiting_title',
           'recruiting_about',
           'recruiting_features',
           'recruiting_faq',
-          'recruiting_contacts'
+          'recruiting_contacts',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -36,8 +37,12 @@ class Recruiting extends Model {
 
         Recruiting::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

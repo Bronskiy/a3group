@@ -20,6 +20,7 @@
 <th>Ссылка</th>
 <th>Порядок</th>
 <th>Родительский пункт</th>
+<th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -35,6 +36,7 @@
 <td>{{ $row->menu_link }}</td>
 <td>{{ $row->menu_order }}</td>
 <td>{{ isset($row->mainmenu->menu_title) ? $row->mainmenu->menu_title : '' }}</td>
+<td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.mainmenu.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

@@ -22,22 +22,28 @@
     {!! Form::label('footer_menu_title', 'Название*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('footer_menu_title', old('footer_menu_title'), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('footer_menu_link', 'Ссылка*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('footer_menu_link', old('footer_menu_link'), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div><div class="form-group">
     {!! Form::label('footer_menu_order', 'Порядок', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('footer_menu_order', old('footer_menu_order'), array('class'=>'form-control')) !!}
-        
+
     </div>
 </div>
+<div class="form-group">
+    {!! Form::label('language_id', 'Язык*', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::select('language_id', $language, old('language_id'), array('class'=>'form-control')) !!}
 
+    </div>
+</div>
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}

@@ -27,9 +27,10 @@ class Recommendations extends Model {
           'recommendations_image',
           'recommendations_short',
           'recommendations_full',
-          'recommendations_file'
+          'recommendations_file',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -38,6 +39,10 @@ class Recommendations extends Model {
         Recommendations::observe(new UserActionsObserver);
     }
 
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
 
 
 

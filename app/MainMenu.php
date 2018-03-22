@@ -25,7 +25,8 @@ class MainMenu extends Model {
           'menu_title',
           'menu_link',
           'menu_order',
-          'mainmenu_id'
+          'mainmenu_id',
+          'menulang_id'
     ];
 
 
@@ -41,7 +42,10 @@ class MainMenu extends Model {
         return $this->hasOne('App\MainMenu', 'id', 'mainmenu_id');
     }
 
-
+    public function language()
+    {
+        return $this->hasOne('App\Language', 'id', 'menulang_id');
+    }
 
 
 

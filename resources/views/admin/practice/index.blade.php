@@ -19,6 +19,7 @@
                         <th>Название</th>
                         <th>URL</th>
                         <th>Проекты</th>
+                        <th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -32,7 +33,8 @@
                             </td>
                             <td>{{ $row->practice_title }}</td>
                             <td>{{ $row->practice_slug }}</td>
-                            <td>{{ isset($row->projects->project_title) ? $row->projects->project_title : '' }}</td> 
+                            <td>{{ isset($row->projects->project_title) ? $row->projects->project_title : '' }}</td>
+                            <td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.practice.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

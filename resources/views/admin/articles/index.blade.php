@@ -20,6 +20,7 @@
 <th>URL</th>
 <th>Категория</th>
 <th>Дата</th>
+<th>Язык</th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -35,6 +36,7 @@
 <td>{{ $row->news_slug }}</td>
 <td>{{ isset($row->newscategories->cat_title) ? $row->newscategories->cat_title : '' }}</td>
 <td>{{ $row->cat_date }}</td>
+<td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.articles.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

@@ -19,6 +19,7 @@
                         <th>Название</th>
 <th>URL</th>
 
+<th>Язык</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -31,6 +32,7 @@
                             </td>
                             <td>{{ $row->law_articles_title }}</td>
 <td>{{ $row->law_articles_slug }}</td>
+<td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>
                                 {!! link_to_route(config('quickadmin.route').'.lawarticles.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}

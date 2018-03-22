@@ -9,6 +9,7 @@ use App\LegalStatement;
 use App\Http\Requests\CreateLegalStatementRequest;
 use App\Http\Requests\UpdateLegalStatementRequest;
 use Illuminate\Http\Request;
+use App\Language;
 
 
 
@@ -23,7 +24,7 @@ class LegalStatementController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $legalstatement = LegalStatement::all();
+        $legalstatement = LegalStatement::with("language")->get();
 
 		return view('admin.legalstatement.index', compact('legalstatement'));
 	}
@@ -35,9 +36,10 @@ class LegalStatementController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.legalstatement.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+	    return view('admin.legalstatement.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class LegalStatementController extends Controller {
 	 */
 	public function store(CreateLegalStatementRequest $request)
 	{
-	    
+
 		LegalStatement::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.legalstatement.index');
@@ -62,9 +64,10 @@ class LegalStatementController extends Controller {
 	public function edit($id)
 	{
 		$legalstatement = LegalStatement::find($id);
-	    
-	    
-		return view('admin.legalstatement.edit', compact('legalstatement'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.legalstatement.edit', compact('legalstatement', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class LegalStatementController extends Controller {
 	{
 		$legalstatement = LegalStatement::findOrFail($id);
 
-        
+
 
 		$legalstatement->update($request->all());
 

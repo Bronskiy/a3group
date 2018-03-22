@@ -10,6 +10,7 @@ use App\Http\Requests\CreateMainMenuRequest;
 use App\Http\Requests\UpdateMainMenuRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class MainMenuController extends Controller {
@@ -23,7 +24,7 @@ class MainMenuController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $mainmenu = MainMenu::with("mainmenu")->get();
+        $mainmenu = MainMenu::with("mainmenu")->with("language")->get();
 
 		return view('admin.mainmenu.index', compact('mainmenu'));
 	}
@@ -35,10 +36,11 @@ class MainMenuController extends Controller {
 	 */
 	public function create()
 	{
-	    $mainmenu = MainMenu::pluck("menu_title", "id")->prepend('Please select', 0);
+	    $mainmenu = MainMenu::where("mainmenu_id", 0)->pluck("menu_title", "id")->prepend('Выбрать', 0);
+			$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
 
-	    return view('admin.mainmenu.create', compact("mainmenu"));
+	    return view('admin.mainmenu.create', compact("mainmenu", "language"));
 	}
 
 	/**
@@ -63,10 +65,12 @@ class MainMenuController extends Controller {
 	public function edit($id)
 	{
 		$mainmenu = MainMenu::find($id);
-	   $mainmenu_p = MainMenu::pluck("menu_title", "id")->prepend('Please select', 0);
+		$mainmenu_p = MainMenu::where("mainmenu_id", 0)->pluck("menu_title", "id")->prepend('Выбрать', 0);
+	  // $mainmenu_p = MainMenu::pluck("menu_title", "id")->prepend('Выбрать', 0);
+		 $language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
 
-		return view('admin.mainmenu.edit', compact('mainmenu', "mainmenu_p"));
+		return view('admin.mainmenu.edit', compact('mainmenu', "mainmenu_p", "language"));
 	}
 
 	/**

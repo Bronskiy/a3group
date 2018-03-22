@@ -10,6 +10,7 @@ use App\Http\Requests\CreateAboutRequest;
 use App\Http\Requests\UpdateAboutRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class AboutController extends Controller {
@@ -23,7 +24,7 @@ class AboutController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $about = About::all();
+        $about = About::with("language")->get();
 
 		return view('admin.about.index', compact('about'));
 	}
@@ -35,9 +36,10 @@ class AboutController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.about.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+	    return view('admin.about.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class AboutController extends Controller {
 	 */
 	public function store(CreateAboutRequest $request)
 	{
-	    
+
 		About::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.about.index');
@@ -62,9 +64,10 @@ class AboutController extends Controller {
 	public function edit($id)
 	{
 		$about = About::find($id);
-	    
-	    
-		return view('admin.about.edit', compact('about'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.about.edit', compact('about', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class AboutController extends Controller {
 	{
 		$about = About::findOrFail($id);
 
-        
+
 
 		$about->update($request->all());
 

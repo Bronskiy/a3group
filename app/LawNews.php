@@ -27,7 +27,8 @@ class LawNews extends Model {
           'lawnews_slug',
           'lawnewscategories_id',
           'lawnews_description',
-          'cat_date'
+          'cat_date',
+          'language_id'
     ];
 
 
@@ -43,6 +44,11 @@ class LawNews extends Model {
         return $this->hasOne('App\LawNewsCategories', 'id', 'lawnewscategories_id');
     }
 
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
     /**
      * Set attribute to date format
      * @param $input

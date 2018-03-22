@@ -20,14 +20,15 @@ class Vacancies extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'vacancies';
-    
+
     protected $fillable = [
           'vacancy_title',
           'vacancy_slug',
           'vacancy_company',
-          'vacancy_description'
+          'vacancy_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -35,8 +36,12 @@ class Vacancies extends Model {
 
         Vacancies::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
 }

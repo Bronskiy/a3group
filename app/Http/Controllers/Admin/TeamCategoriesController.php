@@ -10,6 +10,7 @@ use App\Http\Requests\CreateTeamCategoriesRequest;
 use App\Http\Requests\UpdateTeamCategoriesRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class TeamCategoriesController extends Controller {
@@ -23,7 +24,7 @@ class TeamCategoriesController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $teamcategories = TeamCategories::all();
+        $teamcategories = TeamCategories::with("language")->get();
 
 		return view('admin.teamcategories.index', compact('teamcategories'));
 	}
@@ -35,9 +36,10 @@ class TeamCategoriesController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.teamcategories.create');
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+	    return view('admin.teamcategories.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class TeamCategoriesController extends Controller {
 	 */
 	public function store(CreateTeamCategoriesRequest $request)
 	{
-	    
+
 		TeamCategories::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.teamcategories.index');
@@ -62,9 +64,10 @@ class TeamCategoriesController extends Controller {
 	public function edit($id)
 	{
 		$teamcategories = TeamCategories::find($id);
-	    
-	    
-		return view('admin.teamcategories.edit', compact('teamcategories'));
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+		return view('admin.teamcategories.edit', compact('teamcategories', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class TeamCategoriesController extends Controller {
 	{
 		$teamcategories = TeamCategories::findOrFail($id);
 
-        
+
 
 		$teamcategories->update($request->all());
 

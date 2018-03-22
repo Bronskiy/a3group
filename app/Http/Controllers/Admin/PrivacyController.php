@@ -10,6 +10,7 @@ use App\Http\Requests\CreatePrivacyRequest;
 use App\Http\Requests\UpdatePrivacyRequest;
 use Illuminate\Http\Request;
 
+use App\Language;
 
 
 class PrivacyController extends Controller {
@@ -23,7 +24,7 @@ class PrivacyController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $privacy = Privacy::all();
+        $privacy = Privacy::with("language")->get();
 
 		return view('admin.privacy.index', compact('privacy'));
 	}
@@ -35,9 +36,10 @@ class PrivacyController extends Controller {
 	 */
 	public function create()
 	{
-	    
-	    
-	    return view('admin.privacy.create');
+
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.privacy.create', compact("language"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class PrivacyController extends Controller {
 	 */
 	public function store(CreatePrivacyRequest $request)
 	{
-	    
+
 		Privacy::create($request->all());
 
 		return redirect()->route(config('quickadmin.route').'.privacy.index');
@@ -62,9 +64,10 @@ class PrivacyController extends Controller {
 	public function edit($id)
 	{
 		$privacy = Privacy::find($id);
-	    
-	    
-		return view('admin.privacy.edit', compact('privacy'));
+		$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+
+		return view('admin.privacy.edit', compact('privacy', 'language'));
 	}
 
 	/**
@@ -77,7 +80,7 @@ class PrivacyController extends Controller {
 	{
 		$privacy = Privacy::findOrFail($id);
 
-        
+
 
 		$privacy->update($request->all());
 

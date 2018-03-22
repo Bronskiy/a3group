@@ -19,27 +19,14 @@
           <h5>Новости</h5>
         </div>
         <div class="latest-posts">
+          @foreach ($articlesData as $value)
           <article class="clearfix m-b-20">
-            <a href="#" class="post-thumb"><img alt="" src="/assets/img/blog/1.jpg"></a>
             <div class="post-right">
-              <h5><a href="#">Sustainable Construction</a></h5>
-              <p class="post-date mb-0 font-12">Sep 29, 2017</p>
+              <h5><a href="/news/{{ $value->news_slug }}">{{ str_limit(strip_tags($value->news_title), $limit = 40, $end = '...') }}</a></h5>
+              <p class="post-date mb-0 font-12">{{ \DateTime::createFromFormat("d-m-Y", $value->cat_date)->format("M jS, Y") }}</p>
             </div>
           </article>
-          <article class="clearfix m-b-20">
-            <a href="#" class="post-thumb"><img alt="" src="/assets/img/blog/2.jpg"></a>
-            <div class="post-right">
-              <h5><a href="#">Industrial Coatings</a></h5>
-              <p class="post-date mb-0 font-12">Sep 29, 2017</p>
-            </div>
-          </article>
-          <article class="clearfix m-b-20">
-            <a href="#" class="post-thumb"><img alt="" src="/assets/img/blog/3.jpg"></a>
-            <div class="post-right">
-              <h5><a href="#">Storefront Installations</a></h5>
-              <p class="post-date mb-0 font-12">Sep 29, 2017</p>
-            </div>
-          </article>
+          @endforeach
         </div>
       </aside>
     </div>
@@ -50,27 +37,14 @@
           <h5>Новости законодательства</h5>
         </div>
         <div class="latest-posts">
+          @foreach ($lawnewsData as $value)
           <article class="clearfix m-b-20">
-            <a href="#" class="post-thumb"><img alt="" src="/assets/img/blog/1.jpg"></a>
             <div class="post-right">
-              <h5><a href="#">Sustainable Construction</a></h5>
-              <p class="post-date mb-0 font-12">Sep 29, 2017</p>
+              <h5><a href="/lawnews/{{ $value->lawnews_slug }}">{{ str_limit(strip_tags($value->lawnews_title), $limit = 40, $end = '...') }}</a></h5>
+              <p class="post-date mb-0 font-12">{{ \DateTime::createFromFormat("d-m-Y", $value->cat_date)->format("M jS, Y") }}</p>
             </div>
           </article>
-          <article class="clearfix m-b-20">
-            <a href="#" class="post-thumb"><img alt="" src="/assets/img/blog/2.jpg"></a>
-            <div class="post-right">
-              <h5><a href="#">Industrial Coatings</a></h5>
-              <p class="post-date mb-0 font-12">Sep 29, 2017</p>
-            </div>
-          </article>
-          <article class="clearfix m-b-20">
-            <a href="#" class="post-thumb"><img alt="" src="/assets/img/blog/3.jpg"></a>
-            <div class="post-right">
-              <h5><a href="#">Storefront Installations</a></h5>
-              <p class="post-date mb-0 font-12">Sep 29, 2017</p>
-            </div>
-          </article>
+          @endforeach
         </div>
       </aside>
     </div>
@@ -80,12 +54,13 @@
         <div class="widget-title">
           <h5>Информация</h5>
         </div>
+        @if ( ! $footerMenuData->isEmpty() )
         <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
+          @foreach ($footerMenuData->sortBy('footer_menu_order') as $value)
+          <li class=" {{{ (Request::is(preg_replace('|/|','',$value->footer_menu_link)) ? 'active' : '') }}}"><a href="{{ $value->footer_menu_link }}">{{ $value->footer_menu_title }}</a></li>
+          @endforeach
         </ul>
+        @endif
       </aside>
     </div>
   </div>

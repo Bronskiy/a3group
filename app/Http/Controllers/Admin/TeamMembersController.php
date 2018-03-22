@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use App\TeamCategories;
 
+use App\Language;
 
 class TeamMembersController extends Controller {
 
@@ -24,7 +25,7 @@ class TeamMembersController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $teammembers = TeamMembers::with("teamcategories")->get();
+        $teammembers = TeamMembers::with("teamcategories")->with("language")->get();
 
 		return view('admin.teammembers.index', compact('teammembers'));
 	}
@@ -38,8 +39,9 @@ class TeamMembersController extends Controller {
 	{
 	    $teamcategories = TeamCategories::pluck("team_cat", "id")->prepend('Please select', 0);
 
-	    
-	    return view('admin.teammembers.create', compact("teamcategories"));
+			$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
+
+	    return view('admin.teammembers.create', compact("teamcategories", "language"));
 	}
 
 	/**
@@ -65,9 +67,10 @@ class TeamMembersController extends Controller {
 	{
 		$teammembers = TeamMembers::find($id);
 	    $teamcategories = TeamCategories::pluck("team_cat", "id")->prepend('Please select', 0);
+			$language = Language::pluck("lang_name", "id")->prepend('Выбрать', 0);
 
-	    
-		return view('admin.teammembers.edit', compact('teammembers', "teamcategories"));
+
+		return view('admin.teammembers.edit', compact('teammembers', "teamcategories", "language"));
 	}
 
 	/**

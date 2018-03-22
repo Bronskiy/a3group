@@ -1,8 +1,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>A3 Group - @yield('title')</title>
+<title>@yield('meta_title')</title>
+<meta name="keywords" content="@yield('meta_keywords')">
+<meta name="description" content="@yield('meta_description')">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Ubuntu+Condensed&amp;subset=cyrillic" rel="stylesheet">
 
 <!-- Dependencies CSS-->

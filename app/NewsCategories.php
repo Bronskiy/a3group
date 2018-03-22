@@ -20,12 +20,13 @@ class NewsCategories extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'newscategories';
-    
+
     protected $fillable = [
           'cat_title',
-          'cat_slug'
+          'cat_slug',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,11 @@ class NewsCategories extends Model {
 
         NewsCategories::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+    public function language()
+    {
+        return $this->hasOne('App\Language', 'id', 'language_id');
+    }
+
 }

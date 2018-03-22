@@ -20,12 +20,13 @@ class LegalStatement extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'legalstatement';
-    
+
     protected $fillable = [
           'legal_title',
-          'legal_description'
+          'legal_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,13 @@ class LegalStatement extends Model {
 
         LegalStatement::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

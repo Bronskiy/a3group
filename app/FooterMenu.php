@@ -20,13 +20,14 @@ class FooterMenu extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'footermenu';
-    
+
     protected $fillable = [
           'footer_menu_title',
           'footer_menu_link',
-          'footer_menu_order'
+          'footer_menu_order',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -34,8 +35,12 @@ class FooterMenu extends Model {
 
         FooterMenu::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

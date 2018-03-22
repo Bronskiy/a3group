@@ -20,12 +20,13 @@ class Privacy extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'privacy';
-    
+
     protected $fillable = [
           'privacy_title',
-          'privacy_description'
+          'privacy_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -33,8 +34,12 @@ class Privacy extends Model {
 
         Privacy::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
 }

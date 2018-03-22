@@ -20,13 +20,14 @@ class Projects extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'projects';
-    
+
     protected $fillable = [
           'project_title',
           'project_slug',
-          'project_description'
+          'project_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -34,8 +35,12 @@ class Projects extends Model {
 
         Projects::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

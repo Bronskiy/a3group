@@ -36,10 +36,18 @@
         {!! Form::text('menu_order', old('menu_order'), array('class'=>'form-control')) !!}
 
     </div>
-</div><div class="form-group">
+</div>
+<div class="form-group">
     {!! Form::label('mainmenu_id', 'Родительский пункт', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::select('mainmenu_id', $mainmenu, old('mainmenu_id'), array('class'=>'form-control')) !!}
+
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('menulang_id', 'Язык', array('class'=>'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::select('menulang_id', $language, old('menulang_id'), array('class'=>'form-control')) !!}
 
     </div>
 </div>

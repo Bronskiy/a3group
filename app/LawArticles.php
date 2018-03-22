@@ -20,13 +20,14 @@ class LawArticles extends Model {
     protected $dates = ['deleted_at'];
 
     protected $table    = 'lawarticles';
-    
+
     protected $fillable = [
           'law_articles_title',
           'law_articles_slug',
-          'law_articles_description'
+          'law_articles_description',
+          'language_id'
     ];
-    
+
 
     public static function boot()
     {
@@ -34,8 +35,12 @@ class LawArticles extends Model {
 
         LawArticles::observe(new UserActionsObserver);
     }
-    
-    
-    
-    
+
+
+        public function language()
+        {
+            return $this->hasOne('App\Language', 'id', 'language_id');
+        }
+
+
 }

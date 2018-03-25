@@ -24,9 +24,9 @@ class CreateContactEntriesRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-            'contact_name' => 'required', 
-            'contact_phone' => 'required', 
-            
+            'contact_name' => 'required',
+            'contact_phone' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
 		];
 	}
 }

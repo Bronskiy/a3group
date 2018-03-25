@@ -1,11 +1,9 @@
 <div class="container-fluid">
-  <!-- Logos-->
   <div class="inner-header">
     <a class="inner-brand fonttextlogoonly" href="/">
-      <div class="brand-dark"><img src="/assets/img/logo.svg" class="logo"></div>
+      <div class="brand-common"><img src="/assets/img/logo.svg" class="logo"></div>
     </a>
   </div>
-  <!-- Navigation-->
   <div class="inner-navigation collapse">
     <div class="inner-navigation-inline ml-3">
       <div class="inner-nav">
@@ -25,14 +23,13 @@
           </li>
           @endif
           @endforeach
-
           <li class="menu-item-has-children menu-language">
-            <a href="#"><span class="flag-icon flag-icon-ru flag-icon-squared"></span> {{ LaravelLocalization::getCurrentLocale() }} <i class="fa fa-angle-down"></i></a>
+            <a href="#"><span class="flag-icon flag-icon-{{ LaravelLocalization::getCurrentLocale() }} flag-icon-squared"></span> {{ LaravelLocalization::getCurrentLocaleNative() }} <i class="fa fa-angle-down"></i></a>
             <ul class="sub-menu" style="margin-left: 0px;">
-              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+              @foreach(LaravelLocalization::getLocalesOrder() as $localeCode => $properties)
               <li>
                 <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                  {{ $properties['native'] }}
+                  <span class="flag-icon flag-icon-{{ $localeCode }} flag-icon-squared"></span> {{ $properties['native'] }}
                 </a>
               </li>
               @endforeach
@@ -43,6 +40,5 @@
       </div>
     </div>
   </div>
-  <!-- Mobile menu-->
   <div class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a></div>
 </div>

@@ -11,60 +11,23 @@
         </div>
       </div>
     </div>
-    <div class="row text-center">
-      <div class="col-md-3 col-sm-6 m-b-30">
-        <div class="team-img">
-          <img class="img-responsive" src="images/team/1.png" alt="">
-        </div>
-        <div class="icon-box-title text-uppercase mb-3">
-          <h4>John Doe</h4>
-        </div>
-        <h4 class="font-serif">- Support</h4>
-        <p>Technical support at porta gravida at eget metus id elit...</p>
-        <a href="#"><i class="fontsizeteam fa fa-twitter"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-facebook"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-google-plus"></i></a>
-      </div>
-      <div class="col-md-3 col-sm-6 m-b-30">
-        <div class="team-img">
-          <img class="img-responsive" src="images/team/2.png" alt="">
-        </div>
-        <div class="icon-box-title text-uppercase mb-3">
-          <h4>Jame Doe</h4>
-        </div>
-        <h4 class="font-serif">- Marketer</h4>
-        <p>Marketing manager at porta gravida at eget metus id elit...</p>
-        <a href="#"><i class="fontsizeteam fa fa-twitter"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-facebook"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-google-plus"></i></a>
-      </div>
-      <div class="col-md-3 col-sm-6 m-b-30">
-        <div class="team-img">
-          <img class="img-responsive" src="images/team/3.png" alt="">
-        </div>
-        <div class="icon-box-title text-uppercase mb-3">
-          <h4>John Doe</h4>
-        </div>
-        <h4 class="font-serif">- Developer</h4>
-        <p>Web developer at porta gravida at eget metus id elit...</p>
 
-        <a href="#"><i class="fontsizeteam fa fa-twitter"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-facebook"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-google-plus"></i></a>
-      </div>
+    <div class="row text-center">
+      @foreach ($TeamData as $value)
       <div class="col-md-3 col-sm-6 m-b-30">
+        @if($value->member_image != '')
         <div class="team-img">
-          <img class="img-responsive" src="images/team/4.png" alt="">
+          <a href="/team/{{ $value->member_slug }}"><img class="img-responsive" src="{{ asset('uploads') . '/'.  $value->member_image }}" alt="{{ $value->member_name }}"></a>
         </div>
+        @endif
         <div class="icon-box-title text-uppercase mb-3">
-          <h4>Jane Doe</h4>
+          <a href="/team/{{ $value->member_slug }}"><h4>{{ $value->member_name }}</h4></a>
         </div>
-        <h4 class="font-serif">- Designer</h4>
-        <p>Web Designer at porta gravida at eget metus id elit...</p>
-        <a href="#"><i class="fontsizeteam fa fa-twitter"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-facebook"></i></a>
-        <a href="#"><i class="fontsizeteam fa fa-google-plus"></i></a>
+        <h4 class="font-serif">{{ $value->member_position }}</h4>
+        <p><a href="mailto:{{ $value->member_email }}">{{ $value->member_email }}</a></p>
       </div>
+      @endforeach
+
     </div>
   </div>
 </section>

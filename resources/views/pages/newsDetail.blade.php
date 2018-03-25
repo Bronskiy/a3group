@@ -66,43 +66,8 @@
         </div>
         @endif
       </div>
+      @include('includes.sidebar')
 
-      <!-- Sidebar-->
-      <div class="col-lg-4 col-12 mt-5">
-        <div class="blog-sidebar-heading mb-0"><h2>Trending</h2></div>
-        <!-- Trending -->
-        <ul class="list-unstyled blog-border-white p-3 mb-3">
-          <li class="mb-2">
-            <p class="mb-0"><a href="#">Praesent tincidunt ornare tortor</a></p>
-            <small>Nov 10, 2017 / <a href="#">Design,</a> <a href="#">App</a></small>
-          </li>
-        </ul>
-        <!-- End Trending -->
-
-        <div class="blog-sidebar-heading"><h2>Latest Posts</h2></div>
-        <!-- Latest Links -->
-        <ul class="list-unstyled blog-border-white p-3 mb-3">
-          <li>
-            <div class="blog-latest-post">
-              <h3><a href="#">How to Learn HTML5..</a></h3>
-            </div>
-            <small>Nov 10, 2017 / <a href="#">Tuts,</a> <a href="#">Bootstrap</a></small>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam odio leo.</p>
-          </li>
-        </ul>
-        <!-- End Latest Links -->
-
-        <div class="blog-sidebar-heading"><h2>Tags</h2></div>
-        <!-- Tags v2 -->
-        <ul class="list-inline blog-border-white p-3 mb-3">
-          <span class="ml-2"><a href="#">Web Design</a></span>
-          <span class="ml-2"><a href="#">Responsive</a></span>
-          <span class="ml-2"><a href="#">tuts</a></span>
-        </ul>
-        <!-- End Tags v2 -->
-
-      </div>
-      <!-- Sidebar end-->
 
     </div>
   </div>

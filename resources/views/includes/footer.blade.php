@@ -1,29 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-lg-3">
-      <!-- Text widget-->
+      @foreach ($сommonVariablesData as $value)
       <aside class="widget widget_text">
         <div class="textwidget">
           <img src="/assets/img/logo.svg" class="footer-logo">
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat.</p><i class="fa fa-envelope mr-2"></i> E-mail: <a href="mailto:support@test.com">support@test.com</a> <br>
-          <i class="fa fa-phone mr-2"></i> Phone: 7 891 011 1267 <br>
-          <i class="fa fa-fax mr-2"></i> Fax: 7 891 011 1267 <br>
+          <p>@lang('common.moscowoffice')</p>
+          <i class="fa fa-phone mr-2"></i> {{ $value->moscow_phone }} <br>
+          <i class="fa fa-fax mr-2"></i> {{ $value->moscow_email }} <br>
+          <p>@lang('common.kalugaoffice')</p>
+          <i class="fa fa-phone mr-2"></i> {{ $value->kaluga_phone }} <br>
+          <i class="fa fa-fax mr-2"></i> {{ $value->kaluga_email }} <br>
         </div>
-
       </aside>
+      @endforeach
     </div>
     <div class="col-md-6 col-lg-3">
-      <!-- Recent entries widget-->
       <aside class="widget widget_recent_entries">
         <div class="widget-title">
-          <h5>Новости</h5>
+          <h5>@lang('common.news')</h5>
         </div>
         <div class="latest-posts">
           @foreach ($articlesData as $value)
           <article class="clearfix m-b-20">
             <div class="post-right">
-              <h5><a href="/news/{{ $value->news_slug }}">{{ str_limit(strip_tags($value->news_title), $limit = 40, $end = '...') }}</a></h5>
-              <p class="post-date mb-0 font-12">{{ \DateTime::createFromFormat("d-m-Y", $value->cat_date)->format("M jS, Y") }}</p>
+              <h5><a href="/news/{{ $value->news_slug }}">{{ str_limit(strip_tags($value->news_title), $limit = 60, $end = '...') }}</a></h5>
+              <p class="post-date mb-0 font-12">{{ Carbon\Carbon::parse($value->cat_date)->formatLocalized('%d %b %Y') }}</p>
             </div>
           </article>
           @endforeach
@@ -31,17 +33,16 @@
       </aside>
     </div>
     <div class="col-md-6 col-lg-3">
-      <!-- Flickr widget-->
       <aside class="widget widget_recent_entries">
         <div class="widget-title">
-          <h5>Новости законодательства</h5>
+          <h5>@lang('common.lawnews')</h5>
         </div>
         <div class="latest-posts">
           @foreach ($lawnewsData as $value)
           <article class="clearfix m-b-20">
             <div class="post-right">
-              <h5><a href="/lawnews/{{ $value->lawnews_slug }}">{{ str_limit(strip_tags($value->lawnews_title), $limit = 40, $end = '...') }}</a></h5>
-              <p class="post-date mb-0 font-12">{{ \DateTime::createFromFormat("d-m-Y", $value->cat_date)->format("M jS, Y") }}</p>
+              <h5><a href="/lawnews/{{ $value->lawnews_slug }}">{{ str_limit(strip_tags($value->lawnews_title), $limit = 60, $end = '...') }}</a></h5>
+              <p class="post-date mb-0 font-12">{{ Carbon\Carbon::parse($value->cat_date)->formatLocalized('%d %b %Y') }}</p>
             </div>
           </article>
           @endforeach
@@ -49,10 +50,9 @@
       </aside>
     </div>
     <div class="col-md-6 col-lg-3">
-      <!-- Links widget-->
       <aside class="widget">
         <div class="widget-title">
-          <h5>Информация</h5>
+          <h5>@lang('common.info')</h5>
         </div>
         @if ( ! $footerMenuData->isEmpty() )
         <ul>
@@ -69,7 +69,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="text-center"><span class="copyright">© 1998-<?php echo date("Y"); ?> A3 Group | Все права защищены</span></div>
+        <div class="text-center"><span class="copyright">© 1998-<?php echo date("Y"); ?> A3 Group | @lang('common.allrightsreserved')</span></div>
       </div>
     </div>
   </div>

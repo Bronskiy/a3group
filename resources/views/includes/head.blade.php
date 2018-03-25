@@ -3,6 +3,8 @@
 <title>@yield('meta_title')</title>
 <meta name="keywords" content="@yield('meta_keywords')">
 <meta name="description" content="@yield('meta_description')">
+<meta name="msvalidate.01" content="324F85A8D13E8F08C0B60D8ACBC7975B" />
+<meta name="google-site-verification" content="MDEd5J8s6o1eBVBxWZYHdPB_Hsgn5OfzdCLZippEv8g" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
@@ -13,7 +15,6 @@
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Ubuntu+Condensed&amp;subset=cyrillic" rel="stylesheet">
-
 <!-- Dependencies CSS-->
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- Icon Fonts-->
@@ -27,6 +28,5 @@
 <link href="/assets/css/pace-theme-minimal.css" rel="stylesheet">
 <link href="/assets/css/animate.css" rel="stylesheet">
 <link href="/assets/css/flag-icon.min.css" rel="stylesheet">
-
 <!-- Main CSS-->
 <link href="/assets/css/styles.css" rel="stylesheet">

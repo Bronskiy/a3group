@@ -5,12 +5,12 @@
       <aside class="widget widget_text">
         <div class="textwidget">
           <img src="/assets/img/logo.svg" class="footer-logo">
-          <p>@lang('common.moscowoffice')</p>
+          <h5 class="p-t-20">@lang('common.moscowoffice')</h5>
           <i class="fa fa-phone mr-2"></i> {{ $value->moscow_phone }} <br>
-          <i class="fa fa-fax mr-2"></i> {{ $value->moscow_email }} <br>
-          <p>@lang('common.kalugaoffice')</p>
+          <i class="fa fa-fax mr-2"></i> <a href="mailto:{{ $value->moscow_email }}">{{ $value->moscow_email }}</a> <br>
+          <h5 class="p-t-20">@lang('common.kalugaoffice')</h5>
           <i class="fa fa-phone mr-2"></i> {{ $value->kaluga_phone }} <br>
-          <i class="fa fa-fax mr-2"></i> {{ $value->kaluga_email }} <br>
+          <i class="fa fa-fax mr-2"></i> <a href="mailto:{{ $value->kaluga_email }}">{{ $value->kaluga_email }}</a> <br>
         </div>
       </aside>
       @endforeach

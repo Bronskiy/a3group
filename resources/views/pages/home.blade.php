@@ -3,21 +3,18 @@
 @section('content')
 
 <!-- Page Header-->
-<section class="spec spec-gray pt-0" id="home">
+<section class="spec  pt-0" id="home">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-12 text-center m-t-100 p-t-100">
         <h1>Download free App Now!</h1>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
-        <a href="#" class="btn btn-brand mr-auto ml-auto m-t-10"><i class="fa fa-apple"></i> Download App<br>
-          <span class="font8px">From App store</span></a>
-          <a href="#" class="btn btn-success mr-auto ml-auto m-t-10"><i class="fa fa-android"></i> Download App<br>
-            <span class="font8px">From Playstore</span></a>
+
           </div>
 
           <div class="col-md-6 col-sm-12 col-xs-12 banner-img overflow-h  m-b-50 p-t-100">
-            <img class="img-responsive animated slideInUp wow" src="images/landing/app.png" alt="">
+            <img class="img-responsive animated slideInUp wow" src="/assets/img/a3group-main.svg" alt="A3 Group Law Firm">
           </div>
         </div>
       </div>
@@ -31,24 +28,24 @@
           <div class="col-md-4 col-sm-12 header-each">
             <div class="icon-box icon-box-left wow fadeIn" data-wow-delay="400ms" style="visibility: visible; animation-delay: 400ms; animation-name: fadeIn;">
               <div class="icon-box-icon">
-                <span class="fa fa-pencil"></span></div>
-                <h3>Beautiful Design</h3>
+                <span class="fa fa-briefcase"></span></div>
+                <h3>Рекрутинг</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod </p>
               </div> <!-- .apps-craft-single-about END -->
             </div>
             <div class="col-md-4 col-sm-12 header-each">
               <div class="icon-box icon-box-left wow fadeIn" data-wow-delay="600ms" style="visibility: visible; animation-delay: 600ms; animation-name: fadeIn;">
                 <div class="icon-box-icon">
-                  <span class="fa fa-desktop"></span> </div>
-                  <h3>Responsive Design</h3>
+                  <span class="fas fa-clipboard-list"></span> </div>
+                  <h3>Миграционный аудит</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod </p>
                 </div> <!-- .apps-craft-single-about END -->
               </div>
               <div class="col-md-4 col-sm-12 header-each">
                 <div class="icon-box icon-box-left wow fadeIn" data-wow-delay="800ms" style="visibility: visible; animation-delay: 800ms; animation-name: fadeIn;">
                   <div class="icon-box-icon">
-                    <span class="fa fa-support"></span></div>
-                    <h3>Great Supports</h3>
+                    <span class="far fa-newspaper"></span></div>
+                    <h3>Новости законодательства</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod </p>
                   </div> <!-- .apps-craft-single-about END -->
                 </div>
@@ -78,7 +75,7 @@
           </section>
           @endforeach
           @endif
-          
+
           <section class="spec" id="about">
             <div class="container">
               <div class="row">

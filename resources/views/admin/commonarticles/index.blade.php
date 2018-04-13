@@ -31,7 +31,7 @@
                                 {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
                             </td>
                             <td>{{ $row->common_title }}</td>
-<td>{{ $row->common_slug }}</td>
+<td><a href="https://a3group.company/{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}/common/{{ $row->common_slug }}" target="_blank">https://a3group.company/{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}/common/{{ $row->common_slug }}</a></td>
 <td>{{ isset($row->language->lang_name) ? $row->language->lang_name : '' }}</td>
 
                             <td>

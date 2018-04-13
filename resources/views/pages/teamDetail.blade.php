@@ -8,6 +8,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Главная</a></li>
           <li class="breadcrumb-item"><a href="/team">Команда</a></li>
+          <li class="breadcrumb-item"><a href="/team-category/{{ $TeamData->teamcategories->team_slug }}">{{ $TeamData->teamcategories->team_cat }}</a></li>
           <li class="breadcrumb-item active">{{ $TeamData->member_name }}</li>
         </ol>
       </div>
@@ -29,7 +30,6 @@
         <div class="spec-title mt-5">
           <h2>{{ $TeamData->member_name }}</h2>
         </div>
-        <a href="/team-category/{{ $TeamData->teamcategories->team_slug }}">{{ $TeamData->teamcategories->team_cat }}</a>
         <p>{{ $TeamData->member_position }}</p>
         <p><a href="mailto:{{ $TeamData->member_email }}">{{ $TeamData->member_email }}</a></p>
         {!! $TeamData->member_about !!}

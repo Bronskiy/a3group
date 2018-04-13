@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\CreateContactEntriesRequest;
 use App\HomePage;
 use App\About;
+use App\Copyright;
+use App\LegalStatement;
+use App\Privacy;
 use App\Mission;
 use App\Membership;
 use App\ContactEntries;
@@ -27,17 +30,46 @@ class OnePageController extends Controller
   public function getDataAbout(Request $request)
   {
     $action = $request->route()->getAction()['lang_id'];
-
     $data['CommonData'] = About::where('language_id', $action)->get();
     return view('pages.common',$data);
   }
+  public function getDataLegal(Request $request){
+    $action = $request->route()->getAction()['lang_id'];
 
-  public function getData(){
-
+    $data['CommonData'] = LegalStatement::where('language_id', $action)->get();
+    return view('pages.common',$data);
   }
 
-  public function getDataContact(){
-    return view('pages.contacts');
+  public function getDataPrivacy(Request $request){
+    $action = $request->route()->getAction()['lang_id'];
+    $data['CommonData'] = Privacy::where('language_id', $action)->get();
+    return view('pages.common',$data);
+  }
+
+  public function getDataCopyrights(Request $request){
+    $action = $request->route()->getAction()['lang_id'];
+
+    $data['CommonData'] = Copyright::where('language_id', $action)->get();
+    return view('pages.common',$data);
+  }
+
+  public function getDataMission(Request $request){
+    $action = $request->route()->getAction()['lang_id'];
+
+    $data['CommonData'] = Mission::where('language_id', $action)->get();
+    return view('pages.common',$data);
+  }
+
+  public function getDataMembership(Request $request){
+    $action = $request->route()->getAction()['lang_id'];
+
+    $data['CommonData'] = Membership::where('language_id', $action)->get();
+    return view('pages.common',$data);
+  }
+
+  public function getDataContact($name = "default"){
+    $data['Name'] = $name;
+    return view('pages.contacts', $data);
   }
 
   public function contactsStore(CreateContactEntriesRequest $request)
@@ -50,16 +82,6 @@ class OnePageController extends Controller
     return view('pages.thankYou');
   }
 
-  public function getDataLegal(){
-    return view('pages.common');
-  }
 
-  public function getDataPrivacy(){
-    return view('pages.common');
-  }
-
-  public function getDataCopyrights(){
-    return view('pages.common');
-  }
 
 }

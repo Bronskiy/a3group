@@ -1,13 +1,14 @@
 @extends('layouts.default')
 
+@section('meta_title', $TeamData->member_name)
 @section('content')
 <section class="spec-page-title">
   <div class="container">
     <div class="row-page-title">
       <div class="page-title-secondary">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Главная</a></li>
-          <li class="breadcrumb-item"><a href="/team">Команда</a></li>
+          <li class="breadcrumb-item"><a href="/">@lang('common.home')</a></li>
+          <li class="breadcrumb-item"><a href="/team">@lang('common.team')</a></li>
           <li class="breadcrumb-item"><a href="/team-category/{{ $TeamData->teamcategories->team_slug }}">{{ $TeamData->teamcategories->team_cat }}</a></li>
           <li class="breadcrumb-item active">{{ $TeamData->member_name }}</li>
         </ol>
@@ -15,7 +16,6 @@
     </div>
   </div>
 </section>
-
 <section class="spec">
   <div class="container">
     <div class="row">
@@ -33,7 +33,6 @@
         <p>{{ $TeamData->member_position }}</p>
         <p><a href="mailto:{{ $TeamData->member_email }}">{{ $TeamData->member_email }}</a></p>
         {!! $TeamData->member_about !!}
-
       </div>
     </div>
   </div>

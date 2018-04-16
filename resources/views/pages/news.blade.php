@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('meta_title', 'Новости')
+@section('meta_title', __('common.news'))
 
 @section('content')
 <section class="spec-page-title">
@@ -7,23 +7,18 @@
     <div class="row-page-title">
       <div class="page-title-secondary">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Главная</a></li>
-          <li class="breadcrumb-item"><a href="/news">Новости</a></li>
+          <li class="breadcrumb-item"><a href="/">@lang('common.home')</a></li>
+          <li class="breadcrumb-item"><a href="/news">@lang('common.news')</a></li>
         </ol>
       </div>
     </div>
   </div>
 </section>
-
-<!-- Blog-->
 <section class="spec pt-0">
   <div class="container">
     <div class="row">
-      <!-- Content-->
       <div class="col-lg-8 mt-5">
-
         @foreach ($PostsData as $value)
-        <!-- Post-->
         <article class="post p-3 blog-border-white">
           <div class="post-wrapper">
             <div class="post-header">
@@ -36,7 +31,7 @@
               </h2>
               <ul class="post-meta h5">
                 @isset($value->cat_date)
-                <li>{{ \DateTime::createFromFormat("d-m-Y", $value->cat_date)->format("M jS, Y") }}</li>
+                <li><i class="far fa-clock"></i> {{ \DateTime::createFromFormat("d-m-Y", $value->cat_date)->format("M jS, Y") }}</li>
                 @endisset
                 @isset($value->newscategories)
                 <li><a href="/category/{{ $value->newscategories->cat_slug }}">{{ $value->newscategories->cat_title }}</a></li>
@@ -54,23 +49,20 @@
             </div>
             <div class="post-more">
               @isset($value->news_slug)
-              <a href="/news/{{ $value->news_slug }}">Подробнее →</a>
+              <a href="/news/{{ $value->news_slug }}">@lang('common.readmore') →</a>
               @endisset
               @isset($value->lawnews_slug)
-              <a href="/lawnews/{{ $value->lawnews_slug }}">Подробнее →</a>
+              <a href="/lawnews/{{ $value->lawnews_slug }}">@lang('common.readmore') →</a>
               @endisset
             </div>
           </div>
         </article>
-        <!-- Post end-->
         @endforeach
-
       </div>
       @include('includes.sidebar')
     </div>
   </div>
 </section>
-
 <section class="spec-sm spec-gray">
   <div class="container">
     <div class="row">

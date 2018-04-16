@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use App\Role;
+use Illuminate\Notifications\Notifiable;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 use Laraveldaily\Quickadmin\Traits\AdminPermissionsTrait;
 
@@ -17,7 +18,7 @@ class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, AdminPermissionsTrait;
+    use Authenticatable, Authorizable, Notifiable, CanResetPassword, AdminPermissionsTrait;
 
     /**
      * The database table used by the model.

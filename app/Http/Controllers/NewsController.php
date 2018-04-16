@@ -17,9 +17,7 @@ class NewsController extends Controller
   public function getData(Request $request, $name = "default")
   {
     $lang = $request->route()->getAction()['lang_id'];
-    // $data['PostsData'] = Posts::all();
     if ($name == "default") {
-    //  $data['TopImage'] = MainImage::find(5);
       $data['PostsData'] = Articles::orderBy('cat_date', 'asc')
       ->where('language_id', $lang)
       ->paginate(15);
@@ -134,5 +132,5 @@ class NewsController extends Controller
       abort(404);
     }
   }
-  
+
 }

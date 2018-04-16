@@ -11,12 +11,12 @@
     <div class="row-page-title">
       <div class="page-title-secondary">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Главная</a></li>
+          <li class="breadcrumb-item"><a href="/">@lang('common.home')</a></li>
           @if ($Category->cat_title)
-          <li class="breadcrumb-item"><a href="/news">Новости</a></li>
+          <li class="breadcrumb-item"><a href="/news">@lang('common.news')</a></li>
           <li class="breadcrumb-item"><a href="/category/{{ $Category->cat_slug}}">{{ $Category->cat_title }}</a></li>
           @elseif ($Category->lawnews_cat_title)
-          <li class="breadcrumb-item"><a href="/lawnews">Новости законодательства</a></li>
+          <li class="breadcrumb-item"><a href="/lawnews">@lang('common.lawnews')</a></li>
           <li class="breadcrumb-item"><a href="/lawnews-category/{{ $Category->lawnews_cat_slug}}">{{ $Category->lawnews_cat_title }}</a></li>
           @endif
         </ol>
@@ -24,13 +24,11 @@
     </div>
   </div>
 </section>
-
 <section class="spec pt-0">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mt-5">
         @foreach ($PostsData as $value)
-        <!-- Post-->
         <article class="post p-3 blog-border-white">
           <div class="post-wrapper">
             <div class="post-header">
@@ -61,10 +59,10 @@
             </div>
             <div class="post-more">
               @isset($value->news_slug)
-              <a href="/news/{{ $value->news_slug }}">Подробнее →</a>
+              <a href="/news/{{ $value->news_slug }}">@lang('common.readmore') →</a>
               @endisset
               @isset($value->lawnews_slug)
-              <a href="/lawnews/{{ $value->lawnews_slug }}">Подробнее →</a>
+              <a href="/lawnews/{{ $value->lawnews_slug }}">@lang('common.readmore') →</a>
               @endisset
             </div>
           </div>
@@ -75,7 +73,6 @@
     </div>
   </div>
 </section>
-
 <section class="spec-sm spec-gray">
   <div class="container">
     <div class="row">

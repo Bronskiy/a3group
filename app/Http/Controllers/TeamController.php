@@ -10,7 +10,6 @@ use App\Language;
 
 class TeamController extends Controller
 {
-
   public function getData(Request $request, $name = "default")
   {
     $lang = $request->route()->getAction()['lang_id'];

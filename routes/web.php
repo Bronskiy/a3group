@@ -26,6 +26,7 @@ Route::group(
 		View::share('articlesData', App\Articles::where('language_id', $lang['id'])->orderBy('cat_date', 'desc')->take(4)->get());
 		View::share('lawnewsData', App\LawNews::where('language_id', $lang['id'])->orderBy('cat_date', 'desc')->take(4)->get());
 		View::share('lawArticlesData', App\LawArticles::where('language_id', $lang['id'])->get());
+		View::share('practicesData', App\Practice::where('language_id', $lang['id'])->orderBy('id', 'asc')->get());
 		View::share('publicationsData', App\Publications::where('language_id', $lang['id'])->orderBy('updated_at', 'desc')->get());
 
 		/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
@@ -35,28 +36,35 @@ Route::group(
 			'uses' => 'OnePageController@getDataHome'
 		]);
 
-		// Route::view('/terms', 'pages.terms', ['name' => 'Terms & Conditions']);
-		// Route::get('/practice', 'OnePageController@getDataPractice');
+		Route::get('/practice/{name?}', [
+			'lang_id' => $lang['id'],
+			'uses' => 'PracticeController@getData'
+		]);
+
+		Route::get('/projects/{name?}', [
+			'lang_id' => $lang['id'],
+			'uses' => 'PracticeController@getProjectsData'
+		]);
 
 		Route::get('/recommendations/{name?}', [
 			'lang_id' => $lang['id'],
 			'uses' => 'RecommendationsController@getData'
-			]);
+		]);
 
 		Route::get('/team/{name?}', [
 			'lang_id' => $lang['id'],
 			'uses' => 'TeamController@getData'
-			]);
+		]);
 
 		Route::get('/team-category/{name?}',[
 			'lang_id' => $lang['id'],
 			'uses' => 'TeamController@getCategoryData'
-			]);
+		]);
 
 		Route::get('/vacancy/{name?}', [
 			'lang_id' => $lang['id'],
 			'uses' => 'VacancyController@getData'
-			]);
+		]);
 
 		Route::get('/news/{name?}', [
 			'lang_id' => $lang['id'],
@@ -91,7 +99,7 @@ Route::group(
 		Route::get('/search', [
 			'lang_id' => $lang['id'],
 			'uses' => 'NewsController@search'
-			]);
+		]);
 
 		Route::get('/contacts/{name?}', [
 			'lang_id' => $lang['id'],

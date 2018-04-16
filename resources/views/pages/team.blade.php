@@ -49,7 +49,6 @@ $title = $Category->team_cat;
         </div>
       </div>
     </div>
-
     <div class="row text-center">
       @foreach ($TeamData as $value)
       <div class="col-md-3 col-sm-6 m-b-30">
@@ -65,7 +64,6 @@ $title = $Category->team_cat;
         <p><a href="mailto:{{ $value->member_email }}">{{ $value->member_email }}</a></p>
       </div>
       @endforeach
-
     </div>
   </div>
 </section>

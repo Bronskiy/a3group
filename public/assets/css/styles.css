@@ -4094,7 +4094,7 @@ blockquote.text-right, blockquote.hero.text-right {
 }
 
 .tab-content {
-  border: 5px solid #f7f7f7;
+  border: 1px solid #eaeaea;
   background-color: #fff;
   border-top: 0;
   padding: 20px 18px;

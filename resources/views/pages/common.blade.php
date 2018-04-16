@@ -33,7 +33,6 @@ $description = $value->membership_description;
 @endif
 
 @section('meta_title', $title )
-
 @section('content')
 <section class="spec-page-title">
   <div class="container">
@@ -45,16 +44,13 @@ $description = $value->membership_description;
       </div>
       <div class="page-title-secondary">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Главная</a></li>
-          <li class="breadcrumb-item active">
-            {{ $title }}
-          </li>
+          <li class="breadcrumb-item"><a href="/">@lang('common.home')</a></li>
+          <li class="breadcrumb-item active">{{ $title }}</li>
         </ol>
       </div>
     </div>
   </div>
 </section>
-
 <section class="spec spec-divider-bottom pb-0">
   <div class="container">
     <div class="row m-b-100">

@@ -106,7 +106,6 @@ Route::group(
 			'uses' => 'OnePageController@getDataContact'
 		]);
 
-		Route::post('/contacts/store', 'OnePageController@contactsStore');
 		Route::get('/thank-you', 'OnePageController@thankYou');
 
 		Route::get('/about', [
@@ -142,6 +141,8 @@ Route::group(
 	});
 
 	/** OTHER PAGES THAT SHOULD NOT BE LOCALIZED **/
+	Route::post('/contacts/store', 'OnePageController@contactsStore');
+	
 	Route::get('a3login', [
 		'as' => 'a3login',
 		'uses' => 'Auth\LoginController@showLoginForm'
